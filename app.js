@@ -13,17 +13,29 @@ function checkIfLeap(year)  {
 
 }
 
+yearInput.addEventListener('keyup', (event) => {
+    if (event.keyCode === 13)   {
+        checkButton.click();
+        yearInput.value = '';
+    }
+})
+
 checkButton.addEventListener('click', () => {
     if (isNaN(+(yearInput.value)))    {
         paragraph.innerText = 'Year error. Please provide correct year.';
         paragraph.style.color = 'red';
+        yearInput.value = '';
     } else {
         if (checkIfLeap(yearInput.value))   {
-            paragraph.innerText = 'This year is leap!';
+            paragraph.innerText = `Year ${yearInput.value} is leap!`;
             paragraph.style.color = 'green';
             paragraph.style.fontSize = '18px';
+            yearInput.value = '';
+
         } else {
-            paragraph.innerText = 'This year is NOT leap!';
+            paragraph.innerText = `Year ${yearInput.value} is NOT leap!`;
+            yearInput.value = '';
+
         }
     }
 })
